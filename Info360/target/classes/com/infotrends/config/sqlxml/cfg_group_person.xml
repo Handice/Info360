@@ -1,0 +1,65 @@
+<!--
+
+       Copyright 2009-2016 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="cfg_group_person">
+
+  <resultMap type="com.infotrends.bean.CFG_group_person" id="cfg_group_personResult">
+    <result  column="GROUP_DBID"   jdbcType="BIGINT" property="group_dpid"/>
+    <result  column="PERSON_DBID"  jdbcType="BIGINT" property="person_dpid"/>
+  </resultMap>
+  
+  <select id="Query_Group_PersonInfo" parameterType="com.infotrends.bean.CFG_group_person"  resultMap="cfg_group_personResult">
+        select  *   from  tblcfg_group_person  where 1=1
+    
+    <if test="group_dpid!=0">
+     	and GROUP_DBID =#{group_dpid,jdbcType=BIGINT}
+    </if>
+      <if test="person_dpid!=0">
+     	and PERSON_DBID =#{person_dpid,jdbcType=BIGINT}
+    </if>
+  
+  </select>
+  
+                                                                           
+   <insert id="Insert_Group_PersonInfo" parameterType="com.infotrends.bean.CFG_group_person">
+  	
+  	insert into tblcfg_group_person (GROUP_DBID,PERSON_DBID)  
+  	values (#{group_dpid},#{person_dpid})
+  	
+                        
+  </insert>
+  
+  
+  <update id="Update_Group_PersonInfo" parameterType="com.infotrends.bean.CFG_group_person">
+    
+    update  tblcfg_group_person  set GROUP_DBID=#{group_dpid}
+    where PERSON_DBID=#{person_dpid}
+  
+  </update>
+  
+   
+  <delete id="Delete_Group_PersonInfo" parameterType="com.infotrends.bean.CFG_group_person">
+    delete tblcfg_group_person where PERSON_DBID=#{person_dpid}
+  
+  </delete>
+  
+  </mapper>
+  
