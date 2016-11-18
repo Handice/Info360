@@ -27,7 +27,7 @@ public class Delete_Group_PersonServlet {
 	
 	@POST
 	@Produces("application/json")
-    public Response postFromPath(@FormParam("PERSON_DBID") String p_dpid
+    public Response postFromPath(@FormParam("PERSON_DBID") String p_dbid
 			) throws IOException {
 		
 
@@ -38,8 +38,8 @@ public class Delete_Group_PersonServlet {
 		
 		int deletecount=0;
 		try{
-			long person_dpid=Long.parseLong(p_dpid);
-			cfg_group_person.setPerson_dpid(person_dpid);
+			long person_dbid=Long.parseLong(p_dbid);
+			cfg_group_person.setPerson_dbid(person_dbid);
 			MaintainService maintainService = new MaintainService();
 			deletecount =maintainService.delete_Group_PersonInfo(cfg_group_person); 
 			jsonObject.put("deletecount", deletecount);
