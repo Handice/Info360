@@ -1,7 +1,7 @@
 package com.infotrends.servlet;
 
 /**
- * @author Tim
+ * @author Lin
  */
 
 import java.io.IOException;

@@ -46,6 +46,35 @@ public class CFG_groupDao {
 	}
 	
 	/**
+	 * 查詢群組資訊
+	 * DBID Query
+	 * @param CFG_group
+	 */
+	public List<CFG_group> query_Group_name(CFG_group   cfg_group){
+		DBAccess dbAccess = new DBAccess();
+		List<CFG_group> cfg_groupList = new ArrayList<CFG_group>();
+		SqlSession sqlSession = null;
+		
+		
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			//通過sqlSession執行SQL語句
+			cfg_groupList = sqlSession.selectList("cfg_group.Query_GroupInfo_name", cfg_group);
+			sqlSession.commit();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			IsError.GET_EXCEPTION = e.getMessage();
+		} finally {
+			if(sqlSession != null){
+			   sqlSession.close();
+			}
+		}
+		return cfg_groupList;
+	}
+	
+	
+	/**
 	 * 新增註冊個人資訊
 	 * @param CFG_person
 	 */

@@ -109,6 +109,36 @@ public class MaintainService {
 	}
 	
 	/**
+	 * Select群組資料的業務邏輯
+	 * name Query
+	 * @param CFG_group.dbid
+	 */
+
+	public List<CFG_group> query_Group_name(CFG_group cfg_group) {
+		if (cfg_group.getDbid() != 0) {
+			List<CFG_group> cfg_grouplist = new ArrayList<CFG_group>();
+			try {
+				CFG_groupDao cfg_groupDao = new CFG_groupDao();
+				cfg_grouplist = cfg_groupDao.query_Group_name(cfg_group);
+			} catch (Exception e) {
+				IsError.GET_EXCEPTION = e.getMessage();
+			}
+			return cfg_grouplist;
+		}
+		 if (cfg_group.getDbid() == 0) {
+			List<CFG_group> cfg_grouplist = new ArrayList<CFG_group>();
+			try {
+				CFG_groupDao cfg_groupDao = new CFG_groupDao();
+				cfg_grouplist = cfg_groupDao.query_Group_name(cfg_group);
+			} catch (Exception e) {
+				IsError.GET_EXCEPTION = e.getMessage();
+			}
+			return cfg_grouplist;
+		}
+		return null;
+	}
+	
+	/**
 	 * Select個人群組獲所有群組資料的業務邏輯
 	 * 
 	 * @param CFG_group_person

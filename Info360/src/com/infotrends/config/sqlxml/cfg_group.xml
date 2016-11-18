@@ -32,13 +32,19 @@
     select DBID,NAME,STATE from tblCfg_Group 
     <if test="dbid != 0">
      	where dbid =#{dbid}
+    </if>  
+  </select>
+  
+  <select id="Query_GroupInfo_name" parameterType="com.infotrends.bean.CFG_group"  resultMap="cfg_groupResult">
+    select DBID,NAME,STATE from tblCfg_Group 
+    <if test="name != null and !&quot;&quot;.equals(name.trim())">
+     	where name =#{name}
     </if>
   </select>
 
  <insert id="Insert_GroupInfo" parameterType="com.infotrends.bean.CFG_group">
-  	SET IDENTITY_INSERT tblCfg_Group ON
-  	insert into tblCfg_Group (dbid,name,state) 
-  	values (#{dbid},#{name},#{state})
+  	insert into tblCfg_Group (name,state) 
+  	values (#{name},#{state})
                         
   </insert>
   
