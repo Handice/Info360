@@ -46,6 +46,7 @@ public class CFG_groupDao {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * 查詢群組資訊
 	 * DBID Query
 	 * @param CFG_group
@@ -75,6 +76,8 @@ public class CFG_groupDao {
 	
 	
 	/**
+=======
+>>>>>>> branch 'backend' of https://github.com/Handice/Info360.git
 	 * 新增註冊個人資訊
 	 * @param CFG_person
 	 */
