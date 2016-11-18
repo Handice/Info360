@@ -22,18 +22,18 @@
     <mapper namespace="cfg_group_person">
 
   <resultMap type="com.infotrends.bean.CFG_group_person" id="cfg_group_personResult">
-    <result  column="GROUP_DBID"   jdbcType="BIGINT" property="group_dpid"/>
-    <result  column="PERSON_DBID"  jdbcType="BIGINT" property="person_dpid"/>
+    <result  column="GROUP_DBID"   jdbcType="BIGINT" property="group_dbid"/>
+    <result  column="PERSON_DBID"  jdbcType="BIGINT" property="person_dbid"/>
   </resultMap>
   
   <select id="Query_Group_PersonInfo" parameterType="com.infotrends.bean.CFG_group_person"  resultMap="cfg_group_personResult">
-        select  *   from  tblcfg_group_person  where 1=1
+        select  GROUP_DBID,PERSON_DBID   from  tblcfg_group_person  where 1=1
     
-    <if test="group_dpid!=0">
-     	and GROUP_DBID =#{group_dpid,jdbcType=BIGINT}
+    <if test="group_dbid!=0">
+     	and GROUP_DBID =#{group_dbid,jdbcType=BIGINT}
     </if>
-      <if test="person_dpid!=0">
-     	and PERSON_DBID =#{person_dpid,jdbcType=BIGINT}
+      <if test="person_dbid!=0">
+     	and PERSON_DBID =#{person_dbid,jdbcType=BIGINT}
     </if>
   
   </select>
@@ -42,7 +42,7 @@
    <insert id="Insert_Group_PersonInfo" parameterType="com.infotrends.bean.CFG_group_person">
   	
   	insert into tblcfg_group_person (GROUP_DBID,PERSON_DBID)  
-  	values (#{group_dpid},#{person_dpid})
+  	values (#{group_dbid},#{person_dbid})
   	
                         
   </insert>
@@ -50,14 +50,14 @@
   
   <update id="Update_Group_PersonInfo" parameterType="com.infotrends.bean.CFG_group_person">
     
-    update  tblcfg_group_person  set GROUP_DBID=#{group_dpid}
-    where PERSON_DBID=#{person_dpid}
+    update  tblcfg_group_person  set GROUP_DBID=#{group_dbid}
+    where PERSON_DBID=#{person_dbid}
   
   </update>
   
    
   <delete id="Delete_Group_PersonInfo" parameterType="com.infotrends.bean.CFG_group_person">
-    delete tblcfg_group_person where PERSON_DBID=#{person_dpid}
+    delete tblcfg_group_person where PERSON_DBID=#{person_dbid}
   
   </delete>
   

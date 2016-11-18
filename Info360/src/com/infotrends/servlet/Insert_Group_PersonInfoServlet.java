@@ -28,7 +28,7 @@ public class Insert_Group_PersonInfoServlet {
 	 */
 	@POST
 	@Produces("application/json")
-	public Response postFromPath(@FormParam("GROUP_DBID") String gdpid,
+	public Response postFromPath(@FormParam("GROUP_DBID") String gdbid,
 			@FormParam("PERSON_DBID") String pdpid) throws IOException {
 		
 
@@ -36,12 +36,12 @@ public class Insert_Group_PersonInfoServlet {
 		CFG_group_person cfg_group_person = new CFG_group_person();
 		jsonObject.put("Status", "POST Path");
 		
-		try{long group_dpid=Long.parseLong(gdpid);
-			long person_dpid=Long.parseLong(pdpid);
-			cfg_group_person.setGroup_dpid(group_dpid);
-			cfg_group_person.setPerson_dpid(person_dpid);
+		try{long group_dbid=Long.parseLong(gdbid);
+			long person_dbid=Long.parseLong(pdpid);
+			cfg_group_person.setGroup_dbid(group_dbid);
+			cfg_group_person.setPerson_dbid(person_dbid);
 			MaintainService maintainService = new MaintainService();
-			int count = maintainService.insert_PersonInfo(cfg_group_person);
+			int count = maintainService.insert_Person_GroupInfo(cfg_group_person);
 			
 			jsonObject.put("insertcount", count);
 			

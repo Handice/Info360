@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.infotrends.bean.CFG_group;
 import com.infotrends.bean.CFG_person;
 import com.infotrends.db.DBAccess;
 import com.infotrends.util.IsError;
@@ -14,51 +15,23 @@ import com.infotrends.util.IsError;
  * 和Message表相關的數據庫操作
  * @author Lin
  */
-public class CFG_personDao {
+public class CFG_groupDao {
 	
 	/**
-	 * 查詢個人資訊或所有資訊
-	 * Account Query
-	 * @param CFG_person
-	 */
-	public List<CFG_person> query_Person_Account(CFG_person   cfg_person){
-		DBAccess dbAccess = new DBAccess();
-		List<CFG_person> cfg_personList = new ArrayList<CFG_person>();
-		SqlSession sqlSession = null;
-		
-		
-		try {
-			sqlSession = dbAccess.getSqlSession();
-			//通過sqlSession執行SQL語句
-			cfg_personList = sqlSession.selectList("cfg_person.Query_PersonInfo_Account", cfg_person);
-			sqlSession.commit();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			IsError.GET_EXCEPTION = e.getMessage();
-		} finally {
-			if(sqlSession != null){
-			   sqlSession.close();
-			}
-		}
-		return cfg_personList;
-	}
-	
-	/**
-	 * 查詢個人資訊或所有資訊
+	 * 查詢群組資訊
 	 * DBID Query
-	 * @param CFG_person
+	 * @param CFG_group
 	 */
-	public List<CFG_person> query_Person_DBID(CFG_person   cfg_person){
+	public List<CFG_group> query_Group(CFG_group   cfg_group){
 		DBAccess dbAccess = new DBAccess();
-		List<CFG_person> cfg_personList = new ArrayList<CFG_person>();
+		List<CFG_group> cfg_groupList = new ArrayList<CFG_group>();
 		SqlSession sqlSession = null;
 		
 		
 		try {
 			sqlSession = dbAccess.getSqlSession();
 			//通過sqlSession執行SQL語句
-			cfg_personList = sqlSession.selectList("cfg_person.Query_PersonInfo_DBID", cfg_person);
+			cfg_groupList = sqlSession.selectList("cfg_group.Query_GroupInfo", cfg_group);
 			sqlSession.commit();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -69,15 +42,15 @@ public class CFG_personDao {
 			   sqlSession.close();
 			}
 		}
-		return cfg_personList;
+		return cfg_groupList;
 	}
 	
 	/**
 	 * 新增註冊個人資訊
 	 * @param CFG_person
 	 */
-	public int insert_PersonInfo(
-			CFG_person   cfg_person)
+	public int insert_GroupInfo(
+			CFG_group   cfg_group)
 			{
 		DBAccess dbAccess = new DBAccess();
 		int cfg_personInt = 0;
@@ -87,7 +60,7 @@ public class CFG_personDao {
 			sqlSession = dbAccess.getSqlSession();
 			//通過sqlSession執行SQL語句
 			
-			cfg_personInt = sqlSession.insert("cfg_person.Insert_PersonInfo", cfg_person);
+			cfg_personInt = sqlSession.insert("cfg_group.Insert_GroupInfo", cfg_group);
 			sqlSession.commit();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

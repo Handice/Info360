@@ -47,6 +47,7 @@
 
   <mappers>
     <mapper resource="com/infotrends/config/sqlxml/cfg_person.xml"/>
+    <mapper resource="com/infotrends/config/sqlxml/cfg_group.xml"/>
     <mapper resource="com/infotrends/config/sqlxml/cfg_group_person.xml"/>
   </mappers>
 

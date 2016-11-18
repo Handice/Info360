@@ -41,8 +41,8 @@ public class Update_Group_PersonInfoServlet {
 		try{
 			long group_dpid=Long.parseLong(gdpid);
 			long person_dpid=Long.parseLong(pdpid);
-			cfg_group_person.setGroup_dpid(group_dpid);
-			cfg_group_person.setPerson_dpid(person_dpid);
+			cfg_group_person.setGroup_dbid(group_dpid);
+			cfg_group_person.setPerson_dbid(person_dpid);
 			MaintainService maintainService = new MaintainService();
 			updatecount=maintainService.update_Group_PersonInfo(cfg_group_person);
 			jsonObject.put("updatecount", updatecount);

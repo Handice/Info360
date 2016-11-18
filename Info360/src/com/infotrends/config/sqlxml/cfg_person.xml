@@ -25,7 +25,7 @@
   <resultMap type="com.infotrends.bean.CFG_person" id="cfg_personResult">
     <id     column="DBID" jdbcType="INTEGER" property="dbid"/>
     <result column="ACCOUNT" jdbcType="VARCHAR" property="account"/>
-    <result column="FIRST_NAME" jdbcType="VARCHAR" property="first_name"/>
+    <result column="FIRSTNAME" jdbcType="VARCHAR" property="first_name"/>
     <result column="LASTNAME"     jdbcType="VARCHAR" property="last_name"/>
     <result column="USER_NAME"    jdbcType="VARCHAR" property="user_name"/>
     <result column="EMAILADDRESS" jdbcType="VARCHAR" property="emailaddress"/>
@@ -36,15 +36,19 @@
     <result column="PASSWORD" jdbcType="INTEGER" property="password"/>
   </resultMap>
   
-  <select id="Query_PersonInfo" parameterType="com.infotrends.bean.CFG_person"  resultMap="cfg_personResult">
-    
-   
-    select *   from  tblcfg_person  
-    
+  <select id="Query_PersonInfo_Account" parameterType="com.infotrends.bean.CFG_person"  resultMap="cfg_personResult">
+    select DBID,ACCOUNT,PASSWORD from tblCfg_Person   
     <if test="account != null and !&quot;&quot;.equals(account.trim())">
      	where account =#{account}
     </if>
+  </select>
   
+   <select id="Query_PersonInfo_DBID" parameterType="com.infotrends.bean.CFG_person"  resultMap="cfg_personResult">
+    select DBID,ACCOUNT,FIRSTNAME,LASTNAME,USER_NAME,EMAILADDRESS,EMPLOYEE_ID,STATE,DN,CREATEDATETIME,PASSWORD
+    from  tblcfg_person  
+    <if test="dbid != 0">
+     	where dbid =#{dbid}
+    </if>
   </select>
 
  <insert id="Insert_PersonInfo" parameterType="com.infotrends.bean.CFG_person">

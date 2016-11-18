@@ -2,24 +2,24 @@ package com.infotrends.bean;
 
 public class CFG_group_person {
 	
-	private long group_dpid;
+	private long group_dbid;
 	
-	private long person_dpid;
+	private long person_dbid;
 
-	public long getGroup_dpid() {
-		return group_dpid;
+	public long getGroup_dbid() {
+		return group_dbid;
 	}
 
-	public void setGroup_dpid(long group_dpid) {
-		this.group_dpid = group_dpid;
+	public void setGroup_dbid(long group_dbid) {
+		this.group_dbid = group_dbid;
 	}
 
-	public long getPerson_dpid() {
-		return person_dpid;
+	public long getPerson_dbid() {
+		return person_dbid;
 	}
 
-	public void setPerson_dpid(long person_dpid) {
-		this.person_dpid = person_dpid;
+	public void setPerson_dbid(long person_dbid) {
+		this.person_dbid = person_dbid;
 	}
 
 	
