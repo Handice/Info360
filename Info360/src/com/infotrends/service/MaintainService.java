@@ -248,6 +248,25 @@ public class MaintainService {
 	}
 	
 	/**
+	 * Update群組資料的業務邏輯
+	 * 
+	 * @param cfg_person
+	 */
+	public int update_GroupInfo(CFG_group cfg_group) {
+
+		int count = 0;
+		try {
+			CFG_groupDao cfg_groupdao = new CFG_groupDao();
+			count = cfg_groupdao.update_GroupInfo(cfg_group);
+		} catch (Exception e) {
+			IsError.GET_EXCEPTION = e.getMessage();
+		}
+		return count;
+
+		// return null;
+	}
+	
+	/**
 	 * Update個人群組資訊
 	 * 
 	 * @param CFG_group_person
@@ -258,6 +277,25 @@ public class MaintainService {
 		try {
 			CFG_group_personDao cfg_group_personDao = new CFG_group_personDao();
 			count = cfg_group_personDao.update_Group_PersonInfo(cfg_group_person);
+		} catch (Exception e) {
+			IsError.GET_EXCEPTION = e.getMessage();
+		}
+		return count;
+
+		// return null;
+	}
+	
+	/**
+	 * Update群組個人資訊
+	 * 
+	 * @param CFG_group_person
+	 */
+	public int update_Person_GroupInfo(CFG_group_person cfg_group_person) {
+
+		int count = 0;
+		try {
+			CFG_group_personDao cfg_group_personDao = new CFG_group_personDao();
+			count = cfg_group_personDao.update_Person_GroupInfo(cfg_group_person);
 		} catch (Exception e) {
 			IsError.GET_EXCEPTION = e.getMessage();
 		}
@@ -288,7 +326,26 @@ public class MaintainService {
 	}
 	
 	/**
-	 * Delete 個人資料群組資訊
+	 * Delete 群組資料的業務邏輯
+	 * 
+	 * @param cfg_person
+	 */
+	public int delete_GroupInfo(CFG_group cfg_group) {
+
+		int count = 0;
+		try {
+			CFG_groupDao cfg_groupdao = new CFG_groupDao();
+			count = cfg_groupdao.delete(cfg_group);
+		} catch (Exception e) {
+			IsError.GET_EXCEPTION = e.getMessage();
+		}
+		return count;
+
+		// return null;
+	}
+	
+	/**
+	 * Delete 個人群組資料資訊
 	 * 
 	 * @param CFG_group_person
 	 */

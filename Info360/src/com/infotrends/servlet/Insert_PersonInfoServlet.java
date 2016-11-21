@@ -15,7 +15,6 @@ import javax.ws.rs.core.Response;
 
 import org.json.JSONObject;
 
-import com.infotrends.bean.CFG_group;
 import com.infotrends.bean.CFG_group_person;
 import com.infotrends.bean.CFG_person;
 import com.infotrends.service.MaintainService;

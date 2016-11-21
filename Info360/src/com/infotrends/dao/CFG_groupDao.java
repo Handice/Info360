@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.infotrends.bean.CFG_group;
-import com.infotrends.bean.CFG_person;
 import com.infotrends.db.DBAccess;
 import com.infotrends.util.IsError;
 
@@ -46,7 +45,6 @@ public class CFG_groupDao {
 	}
 	
 	/**
-<<<<<<< HEAD
 	 * 查詢群組資訊
 	 * DBID Query
 	 * @param CFG_group
@@ -76,9 +74,7 @@ public class CFG_groupDao {
 	
 	
 	/**
-=======
->>>>>>> branch 'backend' of https://github.com/Handice/Info360.git
-	 * 新增註冊個人資訊
+	 * 新增註冊群組資訊
 	 * @param CFG_person
 	 */
 	public int insert_GroupInfo(
@@ -107,19 +103,19 @@ public class CFG_groupDao {
 	}
 
 	/**
-	 * 更新個人資訊
-	 * @param CFG_person
+	 * 更新群組資訊
+	 * @param CFG_group
 	 */
-	public int update_PersonInfo(
-			CFG_person   cfg_person	){
+	public int update_GroupInfo(
+			CFG_group   cfg_group	){
 		DBAccess dbAccess = new DBAccess();
-		int cfg_personInt = 0;
+		int cfg_groupInt = 0;
 		SqlSession sqlSession = null;
 
 		try {
 			sqlSession = dbAccess.getSqlSession();
 			//通過sqlSession執行SQL語句
-			cfg_personInt = sqlSession.insert("cfg_person.Update_PersonInfo", cfg_person);
+			cfg_groupInt = sqlSession.insert("cfg_group.Update_GroupInfo", cfg_group);
 			sqlSession.commit();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -130,23 +126,23 @@ public class CFG_groupDao {
 				sqlSession.close();
 			}
 		}
-		return cfg_personInt;
+		return cfg_groupInt;
 	}
 	
 	/**
-	 * 刪除個人資訊
+	 * 刪除群駔資訊
 	 * @param CFG_person
 	 */
-	public int delete(CFG_person   cfg_person){
+	public int delete(CFG_group   cfg_group){
 		DBAccess dbAccess = new DBAccess();
-		int cfg_personInt = 0;
+		int cfg_groupInt = 0;
 		SqlSession sqlSession = null;
 
 		
 		try {
 			sqlSession = dbAccess.getSqlSession();
 			//通過sqlSession執行SQL語句
-			cfg_personInt = sqlSession.delete("cfg_person.Delete_PersonInfo", cfg_person);
+			cfg_groupInt = sqlSession.delete("cfg_group.Delete_GroupInfo", cfg_group);
 			sqlSession.commit();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -157,7 +153,7 @@ public class CFG_groupDao {
 				sqlSession.close();
 			}
 		}
-		return cfg_personInt;
+		return cfg_groupInt;
 	}
 	
 	

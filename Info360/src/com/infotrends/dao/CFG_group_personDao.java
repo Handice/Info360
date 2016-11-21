@@ -79,13 +79,13 @@ public class CFG_group_personDao {
 	public int update_Group_PersonInfo(
 			CFG_group_person   cfg_group_person	){
 		DBAccess dbAccess = new DBAccess();
-		int cfg_personInt = 0;
+		int cfg_group_personInt = 0;
 		SqlSession sqlSession = null;
 
 		try {
 			sqlSession = dbAccess.getSqlSession();
 			//通過sqlSession執行SQL語句
-			cfg_personInt = sqlSession.insert("cfg_group_person.Update_Group_PersonInfo", cfg_group_person);
+			cfg_group_personInt = sqlSession.insert("cfg_group_person.Update_Group_PersonInfo", cfg_group_person);
 			sqlSession.commit();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -96,7 +96,35 @@ public class CFG_group_personDao {
 				sqlSession.close();
 			}
 		}
-		return cfg_personInt;
+		return cfg_group_personInt;
+	}
+	
+	/**
+	 * 個人所屬群組資訊
+	 * @param CFG_group_person
+	 */
+	
+	public int update_Person_GroupInfo(
+			CFG_group_person   cfg_group_person	){
+		DBAccess dbAccess = new DBAccess();
+		int cfg_group_personInt = 0;
+		SqlSession sqlSession = null;
+
+		try {
+			sqlSession = dbAccess.getSqlSession();
+			//通過sqlSession執行SQL語句
+			cfg_group_personInt = sqlSession.insert("cfg_group_person.Update_Person_GroupInfo", cfg_group_person);
+			sqlSession.commit();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			IsError.GET_EXCEPTION = e.getMessage();
+		} finally {
+			if(sqlSession != null){
+				sqlSession.close();
+			}
+		}
+		return cfg_group_personInt;
 	}
 	
 	

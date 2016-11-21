@@ -67,8 +67,8 @@
   </update>
   
   <delete id="Delete_PersonInfo" parameterType="com.infotrends.bean.CFG_person">
-    delete tblcfg_person where account=#{account} and password=#{password}
+    delete tblcfg_person where dbid=#{dbid} and password=#{password}
   
   </delete>
-
+  
 </mapper>

@@ -10,39 +10,44 @@ import javax.ws.rs.core.Response;
 
 import org.json.JSONObject;
 
+import com.infotrends.bean.CFG_group;
 import com.infotrends.bean.CFG_group_person;
 import com.infotrends.service.MaintainService;
 import com.infotrends.util.IsError;
+import com.infotrends.util.Variable;
 
-@Path("/Delete_Group_PersonInfo")
-public class Delete_Group_PersonServlet {
+
+@Path("/Delete_GroupInfo")
+public class Delete_GroupInfoServlet {
 	/**
 	 * 使用POST方法
-	 * 依據person_dpid刪除個人群組資訊
-	 * @param PERSON_DBID
-	 
+	 * 刪除群組資訊
+	 * @param DBID
 	 * @return
 	 * @throws IOException
 	 */
 	
 	@POST
 	@Produces("application/json")
-    public Response postFromPath(@FormParam("PERSON_DBID") String p_dbid
+    public Response postFromPath(@FormParam("dbid") int dbid
 			) throws IOException {
 		
 
 		JSONObject jsonObject = new JSONObject();
-		CFG_group_person cfg_group_person = new CFG_group_person();
-		jsonObject.put("Status", "POST Path");
-	
+		CFG_group cfg_group= new CFG_group();
+		jsonObject.put("Status", Variable.POST_STATUS);
+		cfg_group.setDbid(dbid);
 		
-		int deletecount=0;
 		try{
-			long person_dbid=Long.parseLong(p_dbid);
-			cfg_group_person.setPerson_dbid(person_dbid);
 			MaintainService maintainService = new MaintainService();
-			deletecount =maintainService.delete_Group_PersonInfo(cfg_group_person); 
-			jsonObject.put("deletecount", deletecount);
+			int deletegroupcount = maintainService.delete_GroupInfo(cfg_group);
+			jsonObject.put("delete_groupcount", deletegroupcount);
+			CFG_group_person cfg_group_person = new CFG_group_person();
+			cfg_group_person.setGroup_dbid(dbid);
+			int deletegrouppersoncount =maintainService.delete_Group_PersonInfo(cfg_group_person);
+			jsonObject.put("delete_group_personcount", deletegrouppersoncount);
+			
+			
 			
 		} catch (Exception e) {
 			if(IsError.GET_EXCEPTION != null)
@@ -54,4 +59,3 @@ public class Delete_Group_PersonServlet {
 		return Response.status(200).entity(jsonObject.toString()).build();
 	}
 }
-

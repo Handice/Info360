@@ -45,14 +45,13 @@
   
   <update id="Update_GroupInfo" parameterType="com.infotrends.bean.CFG_group">
     
-    update  tblcfg_person  set firstname=#{first_name},lastname=#{last_name},
-    emailaddress=#{emailaddress},user_name=#{user_name},password=#{password}
-    where account=#{account}
+    update  tblcfg_group set name=#{name},state=#{state}
+    where dbid=#{dbid}
   
   </update>
   
   <delete id="Delete_GroupInfo" parameterType="com.infotrends.bean.CFG_group">
-    delete tblcfg_person where account=#{account} and password=#{password}
+    delete tblcfg_group where dbid=#{dbid}
   
   </delete>
 

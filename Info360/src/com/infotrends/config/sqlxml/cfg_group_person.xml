@@ -32,7 +32,8 @@
     <if test="group_dbid!=0">
      	and GROUP_DBID =#{group_dbid,jdbcType=BIGINT}
     </if>
-      <if test="person_dbid!=0">
+    
+    <if test="person_dbid!=0">
      	and PERSON_DBID =#{person_dbid,jdbcType=BIGINT}
     </if>
   
@@ -55,10 +56,21 @@
   
   </update>
   
+  <update id="Update_Person_GroupInfo" parameterType="com.infotrends.bean.CFG_group_person">
+    
+    update  tblcfg_group_person  set PERSON_DBID=#{person_dbid}
+    where GROUP_DBID=#{group_dbid}
+  
+  </update>
+  
    
   <delete id="Delete_Group_PersonInfo" parameterType="com.infotrends.bean.CFG_group_person">
-    delete tblcfg_group_person where PERSON_DBID=#{person_dbid}
-  
+  	<if test="person_dbid!=0">
+  		delete tblcfg_group_person where PERSON_DBID=#{person_dbid}
+  	</if>
+  	<if test="group_dbid!=0">
+  		delete tblcfg_group_person where GROUP_DBID=#{group_dbid}
+  	</if>
   </delete>
   
   </mapper>
