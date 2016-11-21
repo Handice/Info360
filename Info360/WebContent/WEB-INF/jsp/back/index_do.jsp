@@ -24,6 +24,9 @@
 var myMap = new Map();
 $.post("RESTful/Query_Person", { "EMPLOYEE_ID":"2222" },
    function(data){
+	
+	$("#ID").value = data.Status;
+	$("#ID").val(data.Status);
 	myMap.set('Status', data.Status);
 	myMap.set('DBID', data.DBID);
 	myMap.set('STATE', data.STATE);

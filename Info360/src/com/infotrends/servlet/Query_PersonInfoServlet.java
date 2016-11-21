@@ -19,8 +19,8 @@ import com.infotrends.util.*;
 @Path("/Query_PersonInfo")
 public class Query_PersonInfoServlet {
 	/**
-	 * 使用POST方法
-	 * 依據輸入DBID有無查詢個人帳號資訊或全體帳號資訊
+	 * 雿輻POST�寞�
+	 * 靘�頛詨DBID��亥岷�犖撣唾�鞈��擃董��閮�
 	 * @param DBID
 	 * @return
 	 * @throws IOException
@@ -39,7 +39,7 @@ public class Query_PersonInfoServlet {
 			MaintainService maintainService = new MaintainService();
 	        List<CFG_person> cfg_personlist = maintainService.query_Person_DBID(cfg_person);
 	        if(dbid != 0){
-	        	//撈取cfg_group_person關聯
+	        	//��cfg_group_person�
 	        	CFG_group_person cfg_group_person = new CFG_group_person();
 	        	cfg_group_person.setPerson_dbid(cfg_personlist.get(0).getDbid());
 	        	List<CFG_group_person> cfg_person_grouplist = maintainService.query_Group_Person(cfg_group_person);
@@ -49,7 +49,7 @@ public class Query_PersonInfoServlet {
 		        	PersonGroupJsonObject.accumulate("person_dbid", cfg_person_grouplist.get(i).getPerson_dbid());
 		        	PersonGroupJsonObject.accumulate("group_dbid", cfg_person_grouplist.get(i).getGroup_dbid()); 
 		        	
-		        	//撈取cfg_group欄位
+		        	//��cfg_group甈�
 				    CFG_group cfg_group = new CFG_group();
 				    cfg_group.setDbid(cfg_person_grouplist.get(i).getGroup_dbid());
 				    List<CFG_group> cfg_grouplist = maintainService.query_Group(cfg_group);
