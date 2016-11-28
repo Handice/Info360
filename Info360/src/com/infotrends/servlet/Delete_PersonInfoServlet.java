@@ -18,8 +18,8 @@ import com.infotrends.util.IsError;
 @Path("/Delete_PersonInfo")
 public class Delete_PersonInfoServlet {
 	/**
-	 * 使用POST方法
-	 * 依據帳號與密碼皆吻合刪除個人資訊
+	 * 雿輻POST�寞�
+	 * 靘�撣唾���蝣潛��餃��芷�犖鞈�
 	 * @param ACCOUNT
 	 * @param PASSWORD
 	 * @return
@@ -28,10 +28,12 @@ public class Delete_PersonInfoServlet {
 	
 	@POST
 	@Produces("application/json")
-    public Response postFromPath(@FormParam("ACCOUNT") String account,
-			@FormParam("PASSWORD") String password
+    public Response postFromPath(@FormParam("account") String account,
+			@FormParam("password") String password
 			) throws IOException {
 		
+		account = account.trim();
+		password = password.trim();
 
 		JSONObject jsonObject = new JSONObject();
 		CFG_person cfg_person = new CFG_person();

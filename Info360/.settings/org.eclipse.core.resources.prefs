@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//WebContent/hplus/css/style.css=UTF-8
+encoding//src/com/infotrends/servlet/Delete_PersonInfoServlet.java=UTF-8
+encoding//src/com/infotrends/servlet/Insert_PersonInfoServlet.java=UTF-8
 encoding//src/com/infotrends/servlet/Query_PersonInfoServlet.java=UTF-8
+encoding//src/com/infotrends/servlet/Update_PersonInfoServlet.java=UTF-8

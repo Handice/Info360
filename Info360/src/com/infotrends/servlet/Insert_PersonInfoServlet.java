@@ -24,7 +24,7 @@ import com.infotrends.util.*;
 @Path("/Insert_PersonInfo")
 public class Insert_PersonInfoServlet {
 	/**
-	 * 使用POST方法Insert個人資料
+	 * 雿輻POST�寞�Insert�犖鞈�
 	 * 
 	 * @param ACCOUNT
 	 * @param FIRST_NAME
@@ -49,6 +49,22 @@ public class Insert_PersonInfoServlet {
 //			@FormParam("group_name") String group_name,
 //			@FormParam("group_state") int group_state
 			) throws IOException {
+		
+		
+		account = account.trim();
+		first_name = first_name.trim();
+		last_name = last_name.trim();
+		username = username.trim();
+		emailaddress = emailaddress.trim();
+		password = password.trim();
+		employee_id = employee_id.trim();
+		
+		
+		
+		
+		
+		
+		
 		
 		JSONObject jsonObject = new JSONObject();
 		CFG_person cfg_person = new CFG_person();

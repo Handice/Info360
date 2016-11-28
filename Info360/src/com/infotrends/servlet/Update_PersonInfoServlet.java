@@ -16,8 +16,8 @@ import com.infotrends.util.IsError;
 @Path("/Update_PersonInfo")
 public class Update_PersonInfoServlet {
 	/**
-	 * 使用POST方法
-	 * 依據帳號更新個人資訊
+	 * 雿輻POST�寞�
+	 * 靘�撣唾��湔�犖鞈�
 	 * @param ACCOUNT
 	 * @param FIRST_NAME
 	 * @param LAST_NAME
@@ -31,14 +31,20 @@ public class Update_PersonInfoServlet {
 
 	@POST
 	@Produces("application/json")
-	public Response postFromPath(@FormParam("ACCOUNT") String account,
-			@FormParam("FIRST_NAME") String first_name,
-			@FormParam("LAST_NAME") String last_name,
-			@FormParam("USER_NAME") String user_name,
-			@FormParam("EMAILADDRESS") String emailaddress,
-			@FormParam("PASSWORD") String password
+	public Response postFromPath(@FormParam("account") String account,
+			@FormParam("first_name") String first_name,
+			@FormParam("last_name") String last_name,
+			@FormParam("user_name") String user_name,
+			@FormParam("emailaddress") String emailaddress,
+			@FormParam("password") String password
 			) throws IOException {
 		
+		account = account.trim();
+		first_name = first_name.trim();
+		last_name = last_name.trim();
+		user_name = user_name.trim();
+		emailaddress = emailaddress.trim();
+		password = password.trim();
 
 		JSONObject jsonObject = new JSONObject();
 		CFG_person cfg_person = new CFG_person();

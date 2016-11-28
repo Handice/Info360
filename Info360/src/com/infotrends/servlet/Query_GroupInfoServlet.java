@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.infotrends.bean.CFG_group;
@@ -19,8 +20,8 @@ import com.infotrends.util.*;
 @Path("/Query_GroupInfo")
 public class Query_GroupInfoServlet {
 	/**
-	 * ‰ΩøÁî®POSTÊñπÊ≥ï
-	 * ‰æùÊìöËº∏ÂÖ•DBIDÊúâÁÑ°Êü•Ë©¢ÂÄã‰∫∫Â∏≥ËôüË≥áË®äÊàñÂÖ®È´îÂ∏≥ËôüË≥áË®ä
+	 * ®œ•ŒPOST§Ë™k
+	 * ®Ãæ⁄øÈ§JDBID¶≥µL¨d∏ﬂ≠”§H±b∏π∏Í∞T©Œ•˛≈È±b∏π∏Í∞T
 	 * @param DBID
 	 * @return
 	 * @throws IOException
@@ -39,44 +40,53 @@ public class Query_GroupInfoServlet {
 			MaintainService maintainService = new MaintainService();
 			 List<CFG_group> cfg_grouplist = maintainService.query_Group(cfg_group);
 	        if(dbid != 0){
-	        	//ÊíàÂèñcfg_group_personÈóúËÅØ
+	        	//º¥®˙cfg_group_person√ˆ¡p
 	        	CFG_group_person cfg_group_person = new CFG_group_person();
 	        	cfg_group_person.setGroup_dbid(cfg_grouplist.get(0).getDbid());
 	        	List<CFG_group_person> cfg_person_grouplist = maintainService.query_Group_Person(cfg_group_person);
-	        	JSONObject GroupPersonJsonObject = new JSONObject();
-	        	JSONObject PersonJsonObject = new JSONObject();
+	        	
+	        	JSONArray GroupPersonJsonArray = new JSONArray();
+	        	JSONArray PersonJsonArray = new JSONArray();
 		        for (int i = 0; i < cfg_person_grouplist.size(); i++) {
-		        	GroupPersonJsonObject.accumulate("person_dbid", cfg_person_grouplist.get(i).getPerson_dbid());
-		        	GroupPersonJsonObject.accumulate("group_dbid", cfg_person_grouplist.get(i).getGroup_dbid()); 
+		        	JSONObject GroupPersonJsonObject = new JSONObject();
+		        	GroupPersonJsonObject.put("person_dbid", cfg_person_grouplist.get(i).getPerson_dbid());
+		        	GroupPersonJsonObject.put("group_dbid", cfg_person_grouplist.get(i).getGroup_dbid()); 
 		        	
-		        	//ÊíàÂèñcfg_personÊ¨Ñ‰Ωç
+		        	GroupPersonJsonArray.put(GroupPersonJsonObject);
+		        	
+		        	//º¥®˙cfg_personƒÊ¶Ï
 		        	CFG_person cfg_person = new CFG_person();
 		        	cfg_person.setDbid((int)cfg_person_grouplist.get(i).getPerson_dbid());
 				    List<CFG_person> cfg_personlist = maintainService.query_Person_DBID(cfg_person);
-				    PersonJsonObject.accumulate("dn", cfg_personlist.get(0).getDn());
-		        	PersonJsonObject.accumulate("dbid", cfg_personlist.get(0).getDbid());
-		        	PersonJsonObject.accumulate("createdatetime", cfg_personlist.get(0).getCreatedatetime());
-		        	PersonJsonObject.accumulate("account",    cfg_personlist.get(0).getAccount());
-		        	PersonJsonObject.accumulate("password", cfg_personlist.get(0).getPassword());
-		        	PersonJsonObject.accumulate("first_name", cfg_personlist.get(0).getFirst_name());
-		        	PersonJsonObject.accumulate("last_name",  cfg_personlist.get(0).getLast_name());
-		        	PersonJsonObject.accumulate("user_name",  cfg_personlist.get(0).getUser_name());
-		        	PersonJsonObject.accumulate("employee_id", cfg_personlist.get(0).getEmployee_id());
-		        	PersonJsonObject.accumulate("emailaddress", cfg_personlist.get(0).getEmailaddress());
-		        	PersonJsonObject.accumulate("state", cfg_personlist.get(0).getState()); 
+				    JSONObject PersonJsonObject = new JSONObject();
+				    PersonJsonObject.put("dn", cfg_personlist.get(0).getDn());
+		        	PersonJsonObject.put("dbid", cfg_personlist.get(0).getDbid());
+		        	PersonJsonObject.put("createdatetime", cfg_personlist.get(0).getCreatedatetime());
+		        	PersonJsonObject.put("account",    cfg_personlist.get(0).getAccount());
+		        	PersonJsonObject.put("password", cfg_personlist.get(0).getPassword());
+		        	PersonJsonObject.put("first_name", cfg_personlist.get(0).getFirst_name());
+		        	PersonJsonObject.put("last_name",  cfg_personlist.get(0).getLast_name());
+		        	PersonJsonObject.put("user_name",  cfg_personlist.get(0).getUser_name());
+		        	PersonJsonObject.put("employee_id", cfg_personlist.get(0).getEmployee_id());
+		        	PersonJsonObject.put("emailaddress", cfg_personlist.get(0).getEmailaddress());
+		        	PersonJsonObject.put("state", cfg_personlist.get(0).getState()); 
+		        	
+		        	PersonJsonArray.put(PersonJsonObject);
 		        }		
-		        jsonObject.put("group_person", GroupPersonJsonObject);
-		        jsonObject.put("person", PersonJsonObject);
+		        jsonObject.put("group_person", GroupPersonJsonArray);
+		        jsonObject.put("person", PersonJsonArray);
 	        }
 			
-	        JSONObject GroupJsonObject = new JSONObject();
+	        JSONArray GroupJsonArray = new JSONArray();
 	        for (int i = 0; i < cfg_grouplist.size(); i++) {
+	        	JSONObject GroupJsonObject = new JSONObject();
 	        	GroupJsonObject.accumulate("dbid", cfg_grouplist.get(i).getDbid());
 			    GroupJsonObject.accumulate("name", cfg_grouplist.get(i).getName()); 
 			    GroupJsonObject.accumulate("state", cfg_grouplist.get(i).getState());
 	        	 
+			    GroupJsonArray.put(GroupJsonObject);
 	        }		
-	        jsonObject.put("group", GroupJsonObject);
+	        jsonObject.put("group", GroupJsonArray);
 	        
 		} catch (Exception e) {
 			if(IsError.GET_EXCEPTION != null)
